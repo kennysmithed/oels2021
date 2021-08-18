@@ -10,9 +10,7 @@ No prior experience in coding is assumed, but you have to be prepared to dive in
 
 ## Staffing
 
-[Kenny Smith](http://www.lel.ed.ac.uk/~kenny/) (that's me) is the main lecturer and course organiser. Best way to get in touch with me is in one of the live sessions, see below, or by email to [kenny.smith@ed.ac.uk](mailto:kenny.smith@ed.ac.uk).
-
-[Alisdair Tullo](https://www.ed.ac.uk/profile/alisdair-tullo/) is co-teaching and will mostly be involved in lab classes. the main lecturer and course organiser. Best way to get in touch with Alisdair is in one of the live sessions, see below, or by email to [alisdair.tullo@ed.ac.uk](mailto:alisdair.tullo@ed.ac.uk).
+The course is co-taught by [Kenny Smith](http://www.lel.ed.ac.uk/~kenny/) and [Alisdair Tullo](https://www.ed.ac.uk/profile/alisdair-tullo/). Kenny (that's me) is the main lecturer and the course organiser; Alisdair is the javascript/jspsych guru and delivers the lab sessions with Kenny. Best way to get in touch with us is in one of the live sessions, see below, or by email to [kenny.smith@ed.ac.uk](mailto:kenny.smith@ed.ac.uk) or [alisdair.tullo@ed.ac.uk](mailto:alisdair.tullo@ed.ac.uk).
 
 We'll also be supported in lab classes by some tutors, details to follow!
 
