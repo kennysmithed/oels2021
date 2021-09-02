@@ -32,7 +32,7 @@ See below for some solutions to recurring problems. Remember, if you need help g
 
 ### I just get a blank screen
 
-A classic problem is that you try to run your code and just get a blank screen. That means something has gone wrong, but what? The way to start to find out is to open the javascript console and see what it says. Often it will have a line in red saying that it can't find one or more files, you fix that (e.g. making sure the files are in the right place) and that fixes it. Or it will mention a syntax error in one of the files, you fix that, and bingo.
+A classic problem is that you try to run your code and just get a blank screen. That means something has gone wrong, but what? The way to start to find out is to open the javascript console and see what it says. Section 03 of the tutorial explains how to access the javascript console. Often it will have a line in red saying that it can't find one or more files, you fix that (e.g. making sure the files are in the right place) and that fixes it. Or it will mention a syntax error in one of the files, you fix that, and bingo.
 
 Accessing the javascript console will be essential for finding bugs in your code - this might involve enabling developer tools for your browser, hopefully if you google "how to access javascript console in X" and "how to enable developer tools in X" where X is your browser, you'll find comprehensible instructions.
 
@@ -48,7 +48,7 @@ Check that:
 
 For the hello world demo, you can just run the code on your own computer - but if you want to test it on the server, you need to copy your code into your public_html folder on jspsychlearning server. You want a folder called e.g. "hello_world" which contains experiment.html and the jspsych folder, e.g. something like this:
 
-![directory structure](images/hello_directory_structure.png)
+![directory structure](images/hello_world_directory_structure.png)
 
 ### How do I run the Hello World code once it's on the server?
 
