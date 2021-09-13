@@ -16,9 +16,20 @@ We'll also be supported in lab classes by some tutors, details to follow!
 
 ## Class times
 
-The course runs in semester 1. We have lectures 10am-11am on Mondays, and lab classes 9am-11am on Wednesdays. The current plan (mid-August 2021) is that lectures will take place in person and lab classes will be online, but the University's guidance is rapidly evolving, we don't know the class size etc yet, so that may change. For the online labs the plan is to use Gather (the one where you have a little avatar and can wander around a 2D world, bump into other people etc) - we have used gather for virtual labs in other courses, it's great because it allows you to work alone or with friends, you can approach the tutor when you need help, talk live, share your screen to show your code, so it does pretty much everything you'd do in an in-person lab. Details about the physical lecture venue and how to access Gather will appear here/in announcements we send out by email. 
+The course runs in semester 1. We have lectures 10am-11am on Mondays, and lab classes 9am-11am on Wednesdays. 
 
 Lectures and labs are both essential to doing well on the course - the assessment involves an understanding both of the literature on online experiments (covered in the readings and lectures) and the practicalities of how to build them (covered in your own work on the practicals, with support available in the labs).
+
+### In-person lectures
+Lectures take place *in person* on Monday mornings, 10am-10.55am, in [40 George Square Lecture Theatre B](https://campusmaps.edina.ac.uk/?building=0229). I am very excited about this but also a bit nervous - you might be too - so please let's do our best to look after each other. In particular:
+- Please wear a mask unless exempt from doing so. I will remove my mask to lecture, which is allowed by the regulations and improves comprehension, but at all other times I'll be wearing one.
+- Hopefully this goes without saying, but *do not come to lectures if you are unwell or think you might be!* You can participate remotely (instructions on how to access live streams/recordings are on the course page on Learn), so you won't miss out and you'll be protecting the rest of us. If I am isolating or unwell (but still well enough lecture) we'll do the lecture remotely.
+- If you are not comfortable with attending in-person for any reason, you can also participate remotely.
+
+### Online labs on Gather
+
+Labs will take place online and we will use Gather (the one where you have a little avatar and can wander around a 2D world, bump into other people etc) - we have used gather for virtual labs in other courses, it's great because it allows you to work alone or with friends, you can approach the tutor when you need help, talk live, share your screen to show your code, so it does pretty much everything you'd do in an in-person lab. Details of how to access Gather are on the course page on Learn.
+
 
 ## Assessment
 
