@@ -22,8 +22,8 @@ Lectures and labs are both essential to doing well on the course - the assessmen
 
 ### In-person lectures
 Lectures take place *in person* on Monday mornings, 10am-10.55am, in [40 George Square Lecture Theatre B](https://campusmaps.edina.ac.uk/?building=0229). I am very excited about this but also a bit nervous - you might be too - so please let's do our best to look after each other. In particular:
-- Please wear a mask unless exempt from doing so. I will remove my mask to lecture, which is allowed by the regulations and improves comprehension, but at all other times I'll be wearing one.
 - Hopefully this goes without saying, but *do not come to lectures if you are unwell or think you might be!* You can participate remotely (instructions on how to access live streams/recordings are on the course page on Learn), so you won't miss out and you'll be protecting the rest of us. If I am isolating or unwell (but still well enough lecture) we'll do the lecture remotely.
+- Please wear a mask unless exempt from doing so. I will remove my mask to lecture, which is allowed by the regulations and improves comprehension, but at all other times I'll be wearing one.
 - If you are not comfortable with attending in-person for any reason, you can also participate remotely.
 
 ### Online labs on Gather
