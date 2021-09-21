@@ -54,7 +54,7 @@ Also read *at least one of*:
 - [A blogpost listing some downsides of MTurk](https://blog.prolific.co/stop-using-mturk-for-research/), although note that this is written by people at Prolific, who are an MTurk competitor! Doesn't mean some of the points aren't valid though.
 - [A 2018 article in The Atlantic on worker exploitation on MTurk](https://www.theatlantic.com/business/archive/2018/01/amazon-mechanical-turk/551192/), although remember that we at least control what we pay workers and how we treat them.
 
-It might also help to have a look at [a video of what the MTurk site looks like from a worker's perspective](https://youtu.be/ke9AEE8XGgA) - NB this video dates from December 2020.
+It might also help to have a look at [a video of what the MTurk site looks like from a worker's perspective](https://youtu.be/ke9AEE8XGgA) - NB this video dates from December 2020. I'll show you around Prolific in class.
 
 ## Re-use
 
