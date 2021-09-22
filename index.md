@@ -54,7 +54,7 @@ Each week there will be a set reading and a programming assignment. The reading 
 - *Scientific content:* lab vs online data collection
 - *Technical content:* more jsPsych and javascript basics
 - [Reading](oels_reading_wk2.md)
-- Programming task
+- [Programming task](oels_practical_wk2.md)
 
 ### Week 3 (4th October): Grammaticality judgements
 
