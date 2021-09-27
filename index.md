@@ -61,7 +61,7 @@ Each week there will be a set reading and a programming assignment. The reading 
 
 - *Scientific content:* lab vs online grammaticality judgments; syntactic processing and acceptability
 - *Technical content:* simple key- and button-press responses
-- Reading
+- [Reading](oels_reading_wk3.md)
 - Programming task
 
 ### Week 4 (11th October): Self-paced reading
