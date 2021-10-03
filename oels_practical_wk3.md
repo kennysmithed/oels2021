@@ -28,7 +28,19 @@ First, get the code and run through it so you can check it runs, and you can see
 
 You will see that `grammaticality_judgments.html` doesn't have much in it - all that does is use the `<script>...</script>` tag to load a couple of plugins plus the file `grammaticality_judgments.js`.
 
-The bulk of the code is in `grammaticality_judgments.js`. You will see that that code includes *comments* - these are bits of text that are enclosed in special markers so that the machine running the code ignores them. They are intended for you to read, to explain what the code is doing. But I'll also add some explanation here.
+The bulk of the code is in `grammaticality_judgments.js`. You will see that that code includes *comments* - these are bits of text that are enclosed in special markers so that the machine running the code ignores them. 
+
+```js
+/*
+This is a javascript block comment - the interpreter ignores this stuff in between the slash-star 
+and the star-slash, it's for you to read, although note that anyone looking at the source code of 
+your experiment will see these comments, including any curious participants!
+*/
+
+// Individual lines can be commented out like this, with a double slash at the start.
+```
+
+Those comments in the code are intended for you to read, to explain what the code is doing. But I'll also add some explanation here.
 
 `grammaticality_judgments.js` is probably one of the simplest types of experiments you could build. It has 4 grammaticality judgment trials, where participants provide a keypress response: y or n for "yes, this sentence could be spoken by a native speaker of English" or "no, it could not". Note that is slightly different from what Sprouse (2011) does - he asks people for a numerical response rather than a simple yes-no, we'll come to that later.
 
@@ -54,7 +66,7 @@ That's basically the only interesting part of the code! But we also need some pr
 ```js
 var consent_screen = {
   type: 'html-button-response',
-  stimulus: "<h3>Welcome to the experiment</h3>\
+  stimulus: "<h3>Welcome to the experiment</h3> \
   <p style='text-align:left'>Experiments begin with an information sheet that explains to the participant\
   what they will be doing, how their data will be used, and how they will be\
   remunerated.</p>\
@@ -109,7 +121,7 @@ jsPsych.init({
 Attempt these problems.
 
 - How would you add extra judgment trials to this code, to ask people about the grammaticality of some additional sentences? Try adding a few new judgment trials.
-- Have a look at the data that is displayed at the end of the experiment. This is in comma-separated format, so a series of columns separated by commas, the very first row of the data gives you the column names. Can you see where the stimulus and the response for each trial is recorded? Is there anything in the data you weren't expecting or don't understand?
+- Have a look at the data that is displayed at the end of the experiment. This is in comma-separated format, so a series of columns separated by commas, the very first row of the data gives you the column names. Can you see where the stimulus and the response for each trial is recorded? Is there anything in the data you weren't expecting or don't understand? Tip: this can be a bit unwieldy to look at on the screen, so you might want to copy and paste it into a spreadsheet app (e.g. Excel) and look at it there. Copy the text on the screen, paste it into e.g. Excel then use the "Text to Columns" command (under the Data menu in Excel on my mac) to format it - the data is comma-separated, there is a comma between each column, so you want to select "Delimited" with comma as the delimiter. If you get that right you'll suddenly go from a big mess to a nice spreadsheet with 7 columns, which will help you make sense of it.
 - Can you change the information screens so that participants progress to the next screen by pressing any key on the keyboard? 
 - Can you change the judgment trials so participants can provide a single-digit numerical response, e.g. any number between 1 and 9, rather than simply allowing y or n as valid responses? That numerical response could indicate a more continuous scale of grammaticality, a bit more like Sprouse's magnitude estimation task.
 - Can you change the judgment trials so the participants provide their responses by clicking yes/no buttons, rather than using the keyboard? (Hint: look at how I did the button on the consent screen)
