@@ -15,7 +15,7 @@ Read:
 - [Sprouse, J. (2011). A validation of Amazon Mechanical Turk for the collection of acceptability judgments in linguistic theory.
 *Behavior Research Methods, 43,* 155-167.](https://doi.org/10.3758/s13428-010-0039-7)
 
-As you read this paper and make note of any questions, criticisms or ideas it gives you, and I'll leave time in the Monday lecture slot so we can discuss these in class. 
+As you read this paper make notes of any questions, criticisms or ideas it gives you, and I'll leave time in the Monday lecture slot so we can discuss these in class. 
 
 A couple of things to note as you work through the paper:
 - Sprouse uses text boxes for a magnitude estimation task - participants are asked to numerically score sentences for grammaticality. In this week's practical we'll start by looking at a simpler task where you simply give a yes/no decision, purely because that's an easier place to start with the code.
