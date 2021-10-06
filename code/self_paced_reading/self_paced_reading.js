@@ -32,8 +32,8 @@ and a yes-no comprehension question.
 */
 
 function make_spr_trial(sentence,comprehension_question) {
-  var sentence_as_word_list = sentence.split(" ") //split the sentence at spaces
-  var sentence_as_stimulus_sequence = [] //empty stimulus sequence to start
+  var sentence_as_word_list = sentence.split(" "); //split the sentence at spaces
+  var sentence_as_stimulus_sequence = []; //empty stimulus sequence to start
   for (var word of sentence_as_word_list) { //for each word in sentence_as_word_list
     sentence_as_stimulus_sequence.push({'stimulus':word}) //add that word in the required format
   }
@@ -43,16 +43,16 @@ function make_spr_trial(sentence,comprehension_question) {
                          {stimulus:comprehension_question,
                           choices:['y','n'],
                           prompt:"<p><em>Answer y or n</em></p>"}
-                        ]}
-  return trial //return the trial you have built
-}
+                        ]};
+  return trial; //return the trial you have built
+};
 
 /*
 Now it is very easy to build multiple trials using this function.
 */
 
-var spr_trial_1 = make_spr_trial("A self paced reading trial","Was this a self paced reading trial?")
-var spr_trial_2 = make_spr_trial("Another self paced reading trial","Trick question: Wasn't this a self paced reading trial?")
+var spr_trial_1 = make_spr_trial("A self paced reading trial","Was this a self paced reading trial?");
+var spr_trial_2 = make_spr_trial("Another self paced reading trial","Trick question: Wasn't this a self paced reading trial?");
 
 /******************************************************************************/
 /*** Instruction trials *******************************************************/
@@ -79,7 +79,7 @@ var consent_screen = {
   <p style='text-align:left'>This is a placeholder for that information, which is normally reviewed \
   as part of the ethical review process.</p>",
   choices: ['Yes, I consent to participate'],
-}
+};
 
 var instruction_screen_1 = {
   type: 'html-button-response',
@@ -89,7 +89,7 @@ var instruction_screen_1 = {
   through the sentence, then there's a comprehension question at the end to check \
   you were actually reading it.</p>",
   choices:["Continue"]
-}
+};
 
 var final_screen = {
   type: 'html-button-response',
@@ -97,7 +97,7 @@ var final_screen = {
   <p style='text-align:left'>Experiments often end with a final screen, e.g. that contains a completion \
   code so the participant can claim their payment.</p>\
   <p style='text-align:left'>This is a placeholder for that information.",
-  choices:["Click to finish the experiment and see your raw data"]}
+  choices:["Click to finish the experiment and see your raw data"]};
 
 /******************************************************************************/
 /*** Collect demographics *******************************************************/
@@ -139,7 +139,7 @@ randomisation.
 var full_timeline = [consent_screen,instruction_screen_1,
                      spr_trial_1,spr_trial_2,
                      demographics_form,
-                     final_screen]
+                     final_screen];
 
 
 /*

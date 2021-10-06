@@ -62,7 +62,7 @@ var spr_trial_the_basic_way = [
   stimulus:"Was that a self-paced reading trial?",
   prompt:"<p><em>Answer y for yes, n for no</em></p>",
   choices:['y','n']}
-]
+];
 ```
 
 That will present the sentence "A self-paced reading trial" one word at a time,
@@ -81,7 +81,7 @@ var spr_trial_using_nested_timeline = [
   {type: 'html-keyboard-response',
    stimulus:"Was that a self-paced reading trial?",
    prompt:"<p><em>Answer y for yes, n for no</em></p>",
-   choices:['y','n']}]
+   choices:['y','n']}];
 ```
 
 `spr_trial_using_nested_timeline` is a list of two trials (those two trials are enclosed in square brackets `[...]`, because that's how we represent lists). The first trial is an `html-keyboard-response` trial, which accepts space as the only valid input, and which has a nested timeline specifying the only thing that differs between the sub-trials, the `stimulus` - each item in the nested timeline gets the `type` and `choices` parameters from its parent, and differs only in its `stimulus`, so when the nested timeline is run we end up with our sentence presented in a sequence of 4 trials. Then the second trial in `spr_trial_using_nested_timeline` is the comprehension question, another `html-keyboard-response` trial but no nested timeline and looking for a y-n response.
@@ -98,7 +98,7 @@ var spr_trial_using_very_nested_timeline =
      timeline: [{stimulus:"A"},{stimulus:"self-paced"},{stimulus:"reading"},{stimulus:"trial"}]},
      {stimulus:"Was that a self-paced reading trial?",
       prompt:"<p><em>Answer y for yes, n for no</em></p>",
-      choices:['y','n']}]}]
+      choices:['y','n']}]}];
 ```
 
 So that's a single `html-keyboard-response` trial which has a nested timeline; the first item in the nested timeline is the spacebar-response trials, which itself has a nested timeline, and then the second item in the timeline is a single trial with different `choices`, `stimulus` and `prompt`. Personally I find that slightly more confusing to look at in the code, but I like that what is conceptually a single trial - a sentence plus its comprehension question - is now a single (quite complex!) trial in the experiment.
@@ -124,7 +124,7 @@ var two_spr_trials =
        {stimulus:"Trick question: wasn't that a self-paced reading trial?",
         prompt:"<p><em>Answer y for yes, n for no</em></p>",
         choices:['y','n']}]}
-]
+];
 ```
 
 So that's a list of two trials, both of which are identical in all their details
@@ -143,8 +143,8 @@ Here's the function. I have called it `make_spr_trial` (spr = self-paced reading
 ```js
 
 function make_spr_trial(sentence,comprehension_question) {
-  var sentence_as_word_list = sentence.split(" ") //split the sentence at spaces
-  var sentence_as_stimulus_sequence = [] //empty stimulus sequence to start
+  var sentence_as_word_list = sentence.split(" "); //split the sentence at spaces
+  var sentence_as_stimulus_sequence = []; //empty stimulus sequence to start
   for (var word of sentence_as_word_list) { //for each word in sentence_as_word_list
     sentence_as_stimulus_sequence.push({'stimulus':word}) //add that word in the required format
   }
@@ -154,16 +154,16 @@ function make_spr_trial(sentence,comprehension_question) {
                          {stimulus:comprehension_question,
                           choices:['y','n'],
                           prompt:"<p><em>Answer y or n</em></p>"}
-                        ]}
-  return trial //return the trial you have built
+                        ]};
+  return trial; //return the trial you have built
 }
 ```
 
 Now it is very easy to build multiple trials using this function. Note that the arguments we pass in - the sentence and the comprehension question - are strings, so enclosed in quotes.
 
 ```js
-var spr_trial_1 = make_spr_trial("A self paced reading trial","Was this a self paced reading trial?")
-var spr_trial_2 = make_spr_trial("Another self paced reading trial","Trick question: Wasn't this a self paced reading trial?")
+var spr_trial_1 = make_spr_trial("A self paced reading trial","Was this a self paced reading trial?");
+var spr_trial_2 = make_spr_trial("Another self paced reading trial","Trick question: Wasn't this a self paced reading trial?");
 ```
 
 ### Other bits and pieces, including collecting demographics
@@ -187,7 +187,7 @@ var demographics_form = {
             <input name='age' type='number'></p> \
         <p style='text-align:left'>Any other comments?<br> \
             <textarea name='comments' rows='10' cols='60'></textarea></p>"
-}
+};
 ```
 
 The interesting stuff happens in the `html` parameter of this trial, so I'll break that down for you. Once again this is a string (enclosed in double quotes) that includes some HTML markup tags. The simplest part of that is the the bit of code that collects the age info:
@@ -218,7 +218,7 @@ The full timeline for this simple 2-trial experiment then looks like this:
 var full_timeline = [consent_screen,instruction_screen_1,
                      spr_trial_1,spr_trial_2,
                      demographics_form,
-                     final_screen]
+                     final_screen];
 ```
 
 And then we use `jsPsych.init` to run it - again,  nothing fancy going on here, and we are just dumping the data to the display at the end. Next week I'll show you how to do something a bit more useful with the data, i.e. save it as a CSV file.
@@ -227,7 +227,7 @@ And then we use `jsPsych.init` to run it - again,  nothing fancy going on here, 
 jsPsych.init({
     timeline: full_timeline,
     on_finish: function(){jsPsych.data.displayData('csv')}
-})
+});
 ```
 
 ## Exercises with the self-paced reading experiment code
