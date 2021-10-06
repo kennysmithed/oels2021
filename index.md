@@ -70,7 +70,7 @@ Each week there will be a set reading and a programming assignment. The reading 
 - *Scientific content:* processing costs of syntactic dependencies
 - *Technical content:* collecting reaction time data, more complex nested trials
 - [Reading](oels_reading_wk4.md)
-- Programming task
+- [Programming task](oels_practical_wk4.md)
 
 ### Week 5 (18th October): Lab catchup week
 
