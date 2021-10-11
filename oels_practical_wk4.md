@@ -13,8 +13,9 @@ Remember, as usual the idea is that you can work through these practicals in the
 
 Alisdair will talk through an experiment which illustrates:
 - The basics of using `for` loops to loop through an array.
-- The basics of JavaScript functions - what a function looks like, and how you make a function return some value.
+- The basics of JavaScript functions - what a function looks like, and how you make a function return a value.
 - Debugging (including Developer Tools in your browser)
+
 The experiment is here: <a href="https://softdev.ppls.ed.ac.uk/online_experiments/example_src/debugging/debugging_example.html">debugging_example.html</a>. You don't need to download it, you can follow along with the example on the server by clicking on the link. (You won't see anything to start with as there are some bugs in it - that's deliberate!)
 
 You may also find it useful to look back through [section 05 of Alisdair's Online Experiments with jsPsych tutorial](https://softdev.ppls.ed.ac.uk/online_experiments/05_javascript.html) as you're working on this week's task.
