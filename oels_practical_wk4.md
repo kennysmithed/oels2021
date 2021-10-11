@@ -9,11 +9,15 @@ This week we are going to look at code for a simple self-paced reading experimen
 
 Remember, as usual the idea is that you can work through these practicals in the lab classes and, if necessary, in your own time - I recommend you use the lab classes as dedicated time to focus on the practicals, with on-tap support from the teaching team. 
 
-## Optionally: refresher on tutorial content from week 2
+## A refresher on debugging and some JavaScript concepts
 
-Feel free to look back through [section 05 of Alisdair's Online Experiments with jsPsych tutorial](https://softdev.ppls.ed.ac.uk/online_experiments/05_javascript.html). The key things we are going to use from that tutorial are:
+Alisdair will talk through an experiment which illustrates:
 - The basics of using `for` loops to loop through an array.
-- The basics on javascript functions - what a function looks like, and how you make a function return some value.
+- The basics on JavaScript functions - what a function looks like, and how you make a function return some value.
+- Debugging (including Developer Tools in your browser)
+The experiment is here: <a href="https://softdev.ppls.ed.ac.uk/online_experiments/example_src/debugging/debugging_example.html">debugging_example.html</a>. You don't need to download it, you can follow along with the example on the server by clicking on the link. (You won't see anything to start with as there are some bugs in it - that's deliberate!)
+
+You may also find it useful to look back through [section 05 of Alisdair's Online Experiments with jsPsych tutorial](https://softdev.ppls.ed.ac.uk/online_experiments/05_javascript.html) as you're working on this week's task.
 
 ## A self-paced reading experiment
 
