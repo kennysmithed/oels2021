@@ -22,8 +22,8 @@ function make_maze_trial(sentence_distractor_pairs) {
 /*
 Now it is very easy to build multiple trials using this function.
 */
-var maze_trial_1 = make_maze_trial([["The","Dax"],["cat","fip"],["sat","wug"],["on","zo"],["the","dax"],["mat","pif"]]);
-var maze_trial_2 = make_maze_trial([["This","Siht"],["is","si"],["a","u"],["sentence","tensnece"]]);
+var maze_trial_1 = make_maze_trial([["The","x-x-x"],["dog","thon"],["chased","pirths"],["the","swax"],["cat.","yits."]]);
+var maze_trial_2 = make_maze_trial([["This","x-x-x"],["is","si"],["a","u"],["sentence.","tensnece."]]);
 
 /******************************************************************************/
 /*** Instruction trials *******************************************************/

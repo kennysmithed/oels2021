@@ -24,8 +24,8 @@ function make_maze_trial(sentence_as_word_list,distractors_as_word_list) {
 Now it is very easy to build multiple trials using this function.
 */
 
-var maze_trial_1 = make_maze_trial(["The","cat","sat","on","the","mat"],["Dax","fip","wug","zo","dax","pif"]);
-var maze_trial_2 = make_maze_trial(["This","is","a","sentence"],["Siht","si","u","tensnece"]);
+var maze_trial_1 = make_maze_trial(["The","dog","chased","the","cat."],["x-x-x","thon","pirths","swax","yits."]);
+var maze_trial_2 = make_maze_trial(["This","is","a","sentence."],["x-x-x","si","u","tensnece."]);
 
 
 /******************************************************************************/
