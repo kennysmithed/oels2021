@@ -17,7 +17,7 @@ There are a couple of ways (at least!) we could do this, I'll show you them belo
 
 ## Option 1: two lists
 
-One way to pass in two options for every reading trial (the correct continuation plus a non-word distractor) is just to pass in two lists of words - one is the list of correct continuations, the other is the list of distractors. For instance, if we want our correct continuations to be "The" "dog", "chased", "the" and "cat" (i.e. the sentence is "The dog chased the cat." as in the L-maze image above) and our distractors are "x-x-x", "thon", "pirths", "swaz", and "yits" (i.e. just a sequence of non-words of the same length), we could represent those two sets of options like this:
+One way to pass in two options for every reading trial (the correct continuation plus a non-word distractor) is just to pass in two lists of words - one is the list of correct continuations, the other is the list of distractors. For instance, if we want our correct continuations to be "The", "dog", "chased", "the" and "cat" (i.e. the sentence is "The dog chased the cat." as in the L-maze image above) and our distractors are "x-x-x", "thon", "pirths", "swaz", and "yits" (i.e. just a sequence of non-words of the same length), we could represent those two sets of options like this:
 
 ```js
 var correct_continuations = ["The","dog","chased","the","cat."];
@@ -50,10 +50,10 @@ var maze_trial_1 = make_maze_trial(["The","dog","chased","the","cat."],["x-x-x",
 This is very similar to the `make_spr_trial` function we used in the main code, except that:
 
 - Rather than passing in a sentence represented as a single string (e.g. `"The dog chased the cat"`) and then splitting it up into a list of words (`["The","dog","chased","the","cat"]`) using `split`, I am just passing it in straight away in the format I need. I liked the idea of passing in a proper sentence in the original self-paced reading code, but that makes less sense when we are dealing with *two* lists, one of which is all non-words.
-- There are two ways of doing for-loops in javascript - the `for (word of list)` way, where you work through the items in a list in turn, and the index-based approach which I am using here (`for (var i=0;i<sentence_as_word_list.length;i++)`) where we create a counter and then work through the list based on position-number (position 0 is the first thing in the list, position 1 is the second thing, etc). We covered these two kinds of for-loops, and how to use a number to retrieve a specific position in a list, in [section 05 of Alisdair's tutorial](https://softdev.ppls.ed.ac.uk/online_experiments/05_javascript.html), under "Arrays" and "Looping through an array".
+- There are two ways of doing for-loops in javascript - the `for (item of list)` way, where you work through the items in a list in turn, and the index-based approach which I am using here (`for (var i=0;i<sentence_as_word_list.length;i++)`) where we create a counter and then work through the list based on position-number (position 0 is the first thing in the list, position 1 is the second thing, etc). We covered these two kinds of for-loops, and how to use a number to retrieve a specific position in a list, in [section 05 of Alisdair's tutorial](https://softdev.ppls.ed.ac.uk/online_experiments/05_javascript.html), under "Arrays" and "Looping through an array".
 - Once I have looked up the correct continuation and the incorrect continuation, I put them together in a list which I am calling `ordered_chocies`, then using that as the `choices` parameter for each trial in my nested timeline.
 
-That would be OK, *but* the corrcet continuation would always be on the left, which is a bit rubbish. Instead we can use a built-in jspsych function, `jsPsych.randomization.shuffle`, to shuffle the `ordered_choices` variable so that the correct continuation will sometimes be on the left and sometimes on the right. That revised function looks like this:
+That would be OK, *but* the correct continuation would always be on the left, which is a bit rubbish. Instead we can use a built-in jspsych function, `jsPsych.randomization.shuffle`, to shuffle the `ordered_choices` list so that the correct continuation will sometimes be on the left and sometimes on the right. That revised function looks like this:
 
 ```js
 function make_maze_trial(sentence_as_word_list,distractors_as_word_list) {
@@ -80,13 +80,13 @@ If you drop these into your `self_paced_reading` folder they will be able to acc
 
 # Option 2: one list of pairs
 
-Option 1 is OK, but I don;t love the fact that the correct and incorrect continuations are in completely seperate lists - so e.g. if I want to see which distractor is going to be paired with "sat" I have to count through the lists. An alternative is to pass our `make_maze_trial` function a single list which contains all the words already paired up. That is actually really easy to do because lists can themselves contain lists - so we can have a list of items, where each item in that list is itself a list containing the correct continuation and its associated distractor. That would be represented as follows:
+Option 1 is OK, but I don't love the fact that the correct and incorrect continuations are in completely seperate lists - so e.g. if I want to see which distractor is going to be paired with "chased" I have to count through the lists. An alternative is to pass our `make_maze_trial` function a single list which contains all the words already paired up. That is actually really easy to do because lists can themselves contain lists - so we can have a list of items, where each item in that list is itself a list containing the correct continuation and its associated distractor. That would be represented as follows:
 
 ```js
 var one_list = [["The","x-x-x"],["dog","thon"],["chased","pirths"],["the","swax"],["cat.","yits."]];
 ```
 
-So `one_list` is a list of 6 items, each of which is a list containing the correct continuation and the distractor it is to be shown with. We could then use a for-loop to work through this list, simply shuffling each pair and using them as the `choices` parameter in our reading trials as we go, like this:
+So `one_list` is a list of 5 items, each of which is a list containing the correct continuation and the distractor it is to be shown with. We could then use a for-loop to work through this list, simply shuffling each pair and using them as the `choices` parameter in our reading trials as we go, like this:
 
 ```js
 function make_maze_trial(sentence_distractor_pairs) {
@@ -102,14 +102,14 @@ function make_maze_trial(sentence_distractor_pairs) {
 };
 ```
 
-Then we use like this:
+Then we use our function like this:
 ```js
 var maze_trial_1 = make_maze_trial([["The","x-x-x"],["dog","thon"],["chased","pirths"],["the","swax"],["cat.","yits."]]);
 ```
 
-Notice that since I only need to loop through one list here, not two, I am using the `for (x of y)` type of for-loop to grab the pair of choices on each trial. Notice also that specifying our trial in a slightly more logical representation (a pair of words for each trial, rather than two lists of words to be paired up) simplified the code for us a bit.
+Notice that since I only need to loop through one list here, not two, I am using the `for (item of list)` type of for-loop to grab the pair of choices on each trial. Notice also that specifying our trial in a slightly more logical representation (a pair of words for each trial, rather than two lists of words to be paired up) simplified the code for us a bit.
 
-The code above is using button responses though, and I said I'd show you how to do this kind of thing using keyboard response trials to. So the way we'd do that is by taking out `shuffled_choices` and pasting together the two words in there into a single string that we can display on-screen using the `html-keyboard-response` plugin. Sticking together a list of strings into a single big string is something that you quite frequently need to do, so javascript provides a function called `join` - you apply it to a list, specify what seperator you want between things in the joined list, and it'll join them up for you. Here's how we'd use join to convert our list of choices into a single string, then plug that into the timeline of an `html-keyboard-response` trial:
+The code above is using button responses though, and I said I'd show you how to do this kind of thing using keyboard response trials to. The way we'd do that is by taking our `shuffled_choices` and pasting together the two words in there into a single string that we can display on-screen using the `html-keyboard-response` plugin. Sticking together a list of strings into a single big string is something that you quite frequently need to do, so javascript provides a function called `join` - you apply it to a list, specify what seperator you want between things in the joined string, and it'll join them up for you. Here's how we'd use join to convert our list of choices into a single string, then plug that into the timeline of an `html-keyboard-response` trial as the stimulus:
 
 ```js
 function make_maze_trial(sentence_distractor_pairs) {
