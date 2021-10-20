@@ -26,7 +26,7 @@ You need a bunch of files for this experiment - as usual an html file and a js f
 
 Again, the code makes some assumptions about the directory structure it's going to live in - regardless of whether you are putting this on your own computer or on the jspsychlearning server, these should sit in a folder called something like `word_learning`, alongside your `grammaticality_judgments` and `self_paced_reading` folders, and your `word_learning` folder needs to include a copy of the `jspsych-6.3.1` code. 
 
-Assuming you have the directory structure all right, this code should run on your local computer (just open the `word_learning.html` file in your browser) or you can upload the whole `word_learning` folder to the public_html folder on the jspsychlearning server and play with it there. Here's what my `public_html` folder currently looks like on cyberduck (relevant bit boxed in red!).
+Assuming you have the directory structure all right, this code should run on your local computer (just open the `word_learning.html` file in your browser) or you can upload the whole `word_learning` folder to the `public_html` folder on the jspsychlearning server and play with it there. Here's what my `public_html` folder currently looks like on cyberduck (relevant bit boxed in red!).
 
 ![suggested directory structure](images/wl_directory_structure.png)
 
@@ -144,7 +144,8 @@ Note that we give `jsPsych.randomization.repeat` a list of trials (so in our cas
 Finally we then need to stick these 5 observation trials together into a flat trial list for our observation phase, then shuffle the order of trials so we don't see all the "buv" trials in a row then all the "cal" trials in a row. First we need to stick our two separate trial lists together. You might think we could just do this like this:
 
 ```js
-var observation_trials_oopsie = [observation_trial_object4_buv_repeated,observation_trial_object4_cal_repeated]
+var observation_trials_oopsie = [observation_trial_object4_buv_repeated,
+                                 observation_trial_object4_cal_repeated]
 ```
 But that is going to confuse jsPsych - it wants the experiment timeline to be a flat array of trials, and here we have actually given it an array consisting of two arrays (`observation_trial_object4_buv_repeated` and `observation_trial_object4_cal_repeated` are themselves arrays), so it doesn't know what to do with it. Instead we have to use a built-in javascript function, `concat`, to concatenate (stick together) the two arrays into a long flat array:
 
