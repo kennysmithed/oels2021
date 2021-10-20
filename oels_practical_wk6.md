@@ -236,7 +236,7 @@ The only slightly intimidating part of that is the first line where we use `jsPs
 Or nearly done. Of course doing every production trial as a sequence of 2 trials would be a pain, for all the usual reasons, so instead what we are going to do is wrap those two component trials up in a function that creates a complex trial with a nested timeline. But all the logic and the details are the same - we give the function the image and the label choices, and it builds us a complex trial. That's what is in the code below. I have made one tiny addition, which is to add some `block` information to the trial data for the crucial click-a-button part of this trial, just like I added `block` information to the observation trials above - this time I note that this is a production trial rather than an observation trial.
 
 ```js
-unction make_production_trial(object,label_choices) {
+function make_production_trial(object,label_choices) {
   var object_filename = 'images/' + object + '.jpg';
   var trial = {type:'image-button-response',
                 stimulus:object_filename,
