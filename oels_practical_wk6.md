@@ -184,7 +184,7 @@ That is very simple, but the labels will always appear in the same order - buv o
 There are a couple of ways you could do this in jsPsych. I am going to do it using the `on_start` property of trials. This allows us to specify some code to run when the trial starts but before anything is displayed on screen, and importantly the stuff that happens in `on_start` can alter the other trial properties. Specifically, initially we'll start off with `choices` in a fixed order (it will complain if we try to leave `choices` unspecified, so we have to set it to *something*, it might as well be this, or we could do an empty array `[]` if you prefer) and then generate a random ordering of the labels in the `on_start`.
 
 ```js
-var production_step2 = {type:'image-button-response',
+var production_step1 = {type:'image-button-response',
                         stimulus:'images/object4.jpg',
                         choices:['buv','cal'], //dummy choices initially
                         on_start: function(trial) {
@@ -200,7 +200,7 @@ That will work, but we still haven't addressed the trickiest problem - how do we
 The way to do this is to store the info you need from one trial in its `data` property, then later on you can use some built-in jsPsych functions to look back at the earlier trial and read the information you need from the relevant bit of that `data`. We already know that button response trials automatically record the index of the button the participant pressed, in `data.response` - that will be 0 if they pressed the first button, 1 if they pressed the second, etc. But that actually isn't super-useful, because we are randomising the button positions - we don't know if button 0 is buv or cal in our example, and (slightly weirdly in my opinion), jsPsych doesn't automatically record the `choices` parameter to `data`. The solution to this is to add that information to the trial `data` ourselves, and then on the next trial we can dig it out and use it. At the start of the step 1 trial we'll make a note of the order of the randomised labels (in `on_start`, straight after we randomise them). Then after the participant has made their selection (in `on_finish`), we'll use our knowledge of the order the buttons appeared and the info on which button they pressed to work out which *label* they selected, and record that in `data` too. Then in step 2 we can just retrieve that information. So our step 1 trial would look like this:
 
 ```js
-var production_step2 = {type:'image-button-response',
+var production_step1 = {type:'image-button-response',
                         stimulus:'images/object4.jpg',
                         choices:['buv','cal'], //dummy choices initially
                         on_start: function(trial) {
@@ -220,7 +220,7 @@ The only thing that has changed about `on_start` is that we now add some info to
 Then the second step of the trial is fairly straightforward - when that trial starts (i.e. using `on_start` again) we can use a built-in jsPsych function to retrieve the `data` from the previous trial, then just read off the `label_selected` info we saved. That looks like this:
 
 ```js
-var production_step3 = {type:'image-button-response',
+var production_step2 = {type:'image-button-response',
                         stimulus:'images/object4.jpg',
                         choices:[], //dummy choices initially
                         on_start: function(trial) {
