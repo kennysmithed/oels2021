@@ -106,7 +106,7 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 - Reading
 - Programming task
 
-### Week 10 (15th November): Participant-to-participant interaction
+### Week 10 (22nd November): Participant-to-participant interaction
 
 - *Scientific content:* least effort and Zipf's Law of Abbreviation
 - *Technical content:* web sockets, python servers, incrementally building a timeline
