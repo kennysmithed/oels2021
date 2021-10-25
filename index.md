@@ -33,7 +33,7 @@ Labs will take place online and we will use Gather (the one where you have a lit
 
 ## Assessment
 
-There are two pieces of assessment, due on 11th November and 9th December. Assessment 1 is an annotated bibliography reviewing and evaluating 4 articles typically drawn from the course set readings. Assessment 2 is a more open-ended project where you produce a working experiment implemented in jsPsych and an accompanying report explaining the motivation behind that experiment, justifying important design decisions you took in building the experiment, and appraising the experiment and ways it could be improved/extended. Full details are provided in [the assignment brief](AssignmentBrief.pdf).
+There are two pieces of assessment, due on 11th November and 9th December. Assessment 1 is an annotated bibliography reviewing and evaluating 4 articles typically drawn from the course set readings. Assessment 2 is a more open-ended project where you produce a working experiment implemented in jsPsych and an accompanying report explaining the motivation behind that experiment, justifying important design decisions you took in building the experiment, and appraising the experiment and ways it could be improved/extended. Full details are provided in [the assignment brief](AssignmentBrief.pdf), and frequently asked questions will be answered in [the FAQ](oels_assignment_faq).
 
 ## Course Materials
 
