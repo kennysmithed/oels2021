@@ -9,6 +9,8 @@ In the week 6 practical I set the following problem - note that it's marked as o
 
 - [Optional, hard] Can you figure out how to use the `jsPsych.randomization.shuffleNoRepeats` function [documented here](https://www.jspsych.org/6.3/core_library/jspsych-randomization/#jspsychrandomizationshufflenorepeats) to do a version where observation and test trials for multiple objects are interspersed, but you never see the same object twice in a row? NB this will only work if you have 3+ different objects in the experiment - it's too hard for the code to find randomisations with no repeats if you have a small number of objects, and impossible if you only have one object, so the code will hang while  endlessly searching!
 
+## An answer
+
 The first thing to do is check out the documentation for the `jsPsych.randomization.shuffleNoRepeats` function, where you'll see that that function takes two arguments - a list (in our case, a list of trials) to be shuffled, and then an equality test, a function that examines pairs of items in that list and tells you whether or not two items from the list constitute repeats. There's also a little example in the documentation of how to do this, which turns out to be very helpful. 
 
 You can download my code through the following two links:
@@ -17,7 +19,7 @@ You can download my code through the following two links:
 
 If you drop these into your `word_learning` folder they will be able to access the copy of `jspsych-6.3.1` plus the `images` folder that's already there.
 
-There's nothing clever going on in the html file - it's just loading the required jsPsych plugins and the javascript file - so open the `word_learning_norepeat.js` file and take a look at how it works. If you work through that, you'll see that the functions for making observation and production trials are unchanged. The first difference from the basic code includes a bunch of lines to expand the observation and production tests from a single object to 3 objects - as per my instructions, you need 2+ objects to shuffle the list such that the same object never repeats on consecutive trials, and in practice you need 3+ objects to give the code a chance to find a valid shuffle, so I went for 3 objects. Generating the observation trials is a bit laborious, but here's how that's done.
+There's nothing clever going on in the html file - it's just loading the required jsPsych plugins and the javascript file - so open the `word_learning_norepeat.js` file and take a look at how it works. If you work through that, you'll see that the functions for making observation and production trials are unchanged. The first difference from the basic code includes a bunch of lines to expand the observation and production tests from a single object to 3 objects - as per my instructions, you need 2+ objects to shuffle the list such that the same object never repeats on consecutive trials, and in practice you need 3+ objects to give the code a chance to find a valid shuffle, so I went for 3 objects. The simplest way of generating the observation trials is a bit laborious (I'll show you a more compact way below), here's how that's done.
 
 ```js
 var observation_trial_object4_buv = make_observation_trial('object4','buv');
@@ -84,6 +86,66 @@ So that's how we create `observation_trials`, our list of shuffled trials with n
 
 If that was too easy for you, a slightly harder option would be to try to shuffle the observation trials so that the same object can occur on consecutive trials, but you never see the same *label* twice in a row. To figure out how to do that, you might want to look at the console-logged trial lists and think about how you can retrieve the info you need from those in order to test for the relevant equality.
 
+
+### A less laborious way of building the observation timeline
+
+You might be looking at my code for generating the observation timeline...
+
+```js
+var observation_trial_object4_buv = make_observation_trial('object4','buv');
+var observation_trial_object4_cal = make_observation_trial('object4','cal');
+
+var observation_trial_object5_seb = make_observation_trial('object5','seb');
+var observation_trial_object5_nuk = make_observation_trial('object5','nuk');
+
+var observation_trial_object6_dap = make_observation_trial('object6','dap');
+var observation_trial_object6_mig = make_observation_trial('object6','mig');
+
+
+
+var observation_trial_object4_buv_repeated = jsPsych.randomization.repeat([observation_trial_object4_buv], 3);
+var observation_trial_object4_cal_repeated = jsPsych.randomization.repeat([observation_trial_object4_cal], 2);
+
+var observation_trial_object5_seb_repeated = jsPsych.randomization.repeat([observation_trial_object5_seb], 4);
+var observation_trial_object5_nuk_repeated = jsPsych.randomization.repeat([observation_trial_object5_nuk], 1);
+
+//0 variation for this one, just for fun
+var observation_trial_object6_dap_repeated = jsPsych.randomization.repeat([observation_trial_object6_dap], 5);
+
+
+/*
+Stick them all together for shuffling...
+*/
+var observation_trials_unshuffled = [].concat(observation_trial_object4_buv_repeated,
+                                              observation_trial_object4_cal_repeated,
+                                              observation_trial_object5_seb_repeated,
+                                              observation_trial_object5_nuk_repeated,
+                                              observation_trial_object6_dap_repeated);
+```
+
+...and shaking your head - is there not a more efficient way to do this? Particularly given that in previous weeks I have emphasized that cut-and-paste repetition is potentially quite error-prone. It turns out there is, using `jsPsych.randomization.repeat` in a slightly different way. Consulting [the documentation](https://www.jspsych.org/6.3/reference/jspsych-randomization/index.html#jspsychrandomizationrepeat), I see that the trial list we pass to `jsPsych.randomization.repeat` can be a list (in my case it's just a list of one trial) and the repeat parameter (which tells it how many repeats we want of each item in the list) can be an integer *or a list*. In the former case it makes that many copies of every item in the trial list - e.g. if we give it a list of 2 trials and request 5 repeats it will give us 5 repeats of each. But if we make the repeats parameter a list of values rather than a single list, then it will read off the repeat numbers for each trial from that list - e.g. if my trial list is `[trial1,trial2]` and my repeat parameter is `[3,2]`, it will give me 3 repeats of trial1 and 2 of trial2. It'll also shuffle the resulting trial list for us (although it doesn't have a mechanism for shuffling the trial list to avoid repeats, so we'll still have to do that as additional step). So that means we can actually compress the process of building the observation trial list quite a lot, down to something like this:
+
+```js
+//we still have to define the basic trials we will use...
+var observation_trial_object4_buv = make_observation_trial('object4','buv');
+var observation_trial_object4_cal = make_observation_trial('object4','cal');
+
+var observation_trial_object5_seb = make_observation_trial('object5','seb');
+var observation_trial_object5_nuk = make_observation_trial('object5','nuk');
+
+var observation_trial_object6_dap = make_observation_trial('object6','dap');
+var observation_trial_object6_mig = make_observation_trial('object6','mig');
+
+//...but then we stick them all together and generate the repeats in a single step
+var observation_trials_unshuffled = jsPsych.randomization.repeat(
+                                              [observation_trial_object4_buv_repeated,
+                                               observation_trial_object4_cal_repeated,
+                                               observation_trial_object5_seb_repeated,
+                                               observation_trial_object5_nuk_repeated,
+                                               observation_trial_object6_dap_repeated],
+                                               [3,2,4,1,5]);
+```
+That should give us a trial list featuring 3 copies of `observation_trial_object4_buv_repeated`, 2 copies of `observation_trial_object4_cal_repeated`, and so on. It's a bit harder to read, but a lot more compact and involves far less laborious cut-and-paste.
 
 ## Re-use
 
