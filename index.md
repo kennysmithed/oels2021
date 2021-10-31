@@ -90,7 +90,7 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 - *Scientific content:* speech perception, social influences on phonetic adaptation
 - *Technical content:* Audio, trial data again, preloading stimuli, saving data trial by trial
 - [Reading](oels_reading_wk7.md)
-- Programming task
+- [Programming task](oels_practical_wk7.md)
 - [Lecture slides](slides/oels2021_lecture6.pdf)
 
 ### Week 8 (8th November): Confederate priming
