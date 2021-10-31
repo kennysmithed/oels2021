@@ -91,6 +91,7 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 - *Technical content:* Audio, trial data again, preloading stimuli, saving data trial by trial
 - [Reading](oels_reading_wk7.md)
 - Programming task
+- [Lecture slides](slides/oels2021_lecture6.pdf)
 
 ### Week 8 (8th November): Confederate priming
 
