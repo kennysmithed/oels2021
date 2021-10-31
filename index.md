@@ -97,8 +97,9 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 
 - *Scientific content:* syntactic priming and alignment
 - *Technical content:*  Audio recording, more randomisation stuff, custom preload lists, reading trial lists from CSV
-- Reading
+- [Reading](oels_reading_wk8.md)
 - Programming task
+- Lecture slides
 
 ### Week 9 (15th November): Iterated Learning
 
@@ -106,6 +107,7 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 - *Technical content:* reading trial lists from CSVs again, PHP scripts for iteration
 - Reading
 - Programming task
+- Lecture slides
 
 ### Week 10 (22nd November): Participant-to-participant interaction
 
@@ -113,6 +115,7 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 - *Technical content:* web sockets, python servers, incrementally building a timeline
 - Reading
 - Programming task
+- Lecture slides
 
 ### Week 11 (29th November): Interacting with MTurk
 
