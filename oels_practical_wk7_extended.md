@@ -112,34 +112,21 @@ There's a pretty strong hint about how to answer this one - loop through `select
 ```
 
 So basically we can loop through this, strip out the `choices` and then add them to 
-a list of image stimuli to preload - since we want to add a list of 2 things every time (`choices` is always a list of two images), I am going to use `concat` rather than `push` to add stuff to the preloading list, so that it ends up as a nice flat list rather than a list of lists. 
+a list of image stimuli to preload. But `choices` is itself a list, so I am going to include an embedded for-loop which iterates through `choices`, adding each of those in turn. The one additional thing I need to do while I am doing that is add path information for each image. You'll notice that in `selection_stim_list` we just have the basic info on the image - e.g. the images are things like "fresh_dill", "animal_ear" etc. The image files are actually in a folder called `picture_selection_images/`, which the preloader needs to know, plus we need to add the extension indicating the filetype (all the image file names end in ".jpg"). We can add that information to each image name as we build our preload list, in the inner for-loop.
 
 ```js
 var image_preload_list = [];
-for (this_stim_and_choices of selection_stim_list) {
-  this_choices = this_stim_and_choices.choices;
-  image_preload_list = image_preload_list.concat(this_choices);
+for (this_stim_and_choices of selection_stim_list) { //for each item in election_stim_list
+  this_choices = this_stim_and_choices.choices; //retrieve its choices
+  for (this_filename of this_choices) { //for each of those
+    //add path info
+    var this_filename_with_path = "picture_selection_images/" + this_filename + ".jpg";
+    image_preload_list.push(this_filename_with_path); //and push to image_preload_list
+  }
 }
 ```
 
-That for-loop will generate a list, `image_preload_list`, that looks like this:
-```js
-[
-  'fresh_dill', 'dry_dill', 'animal_ear', 'animal_nose', 'angel_wing', 'airplane_wing', ...
-]
-```
-
-That looks like exactly what we want, *except that* it is missing the information on the path to the images (all the images are in a folder called `picture_selection_images/`), plus it's missing the extension indicating the filetype (all the image file names end in ".jpg"). The simplest way to add that is just to do another for-loop, iterating through `image_preload_list` and adding the path and file extension information so the preloader can actually find the images it needs.
-
-```js
-var image_preload_list_with_paths = [];
-for (this_filename of image_preload_list) {
-  var this_filename_with_path = "picture_selection_images/" + this_filename + ".jpg";
-  image_preload_list_with_paths.push(this_filename_with_path);
-}
-```
-
-Now we have `image_preload_list_with_paths` which we can just give to our preload trial as a manual preload list of images:
+Now we have `image_preload_list` which we can just give to our preload trial as a manual preload list of images:
 
 ```js
 var preload = {
@@ -149,7 +136,7 @@ var preload = {
 };
 ```
 
-Note that we are still auto-preloading the audio in each `audio-button-response` trial, but now you should notice that the images appear instantly on each trial too, with no lag. If you want you can also experiment and see what happens if you try to preload using `image_preload_list` (lacking the path info) rather than `image_preload_list_with_paths`.
+Note that we are still auto-preloading the audio in each `audio-button-response` trial, but now you should notice that the images appear instantly on each trial too, with no lag. If you want you can also experiment and see what happens if you remove the path or extension information from each file when you build `image_preload_list`.
 
 
 ## Re-use

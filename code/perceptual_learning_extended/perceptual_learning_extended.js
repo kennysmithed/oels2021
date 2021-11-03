@@ -209,14 +209,13 @@ it so you can see):
    {stimulus:sound_file2,choices:[left_image2,right_image2]}]
 
 So basically we can loop through this, strip out the choices and then add then to 
-a list of image stimuli to load - since we want to add a list of 2 things every time, 
-I am going to use concat rather than push to add stuff to the preloading list. 
+a list of image stimuli to load. choices is itself a list, so I will iterate through 
+that with a second embedded for-loop, adding each choice in turn. 
 
 The only complication is that we have to add the path information for each image - 
 e.g. left_image1 will be something like "fresh_dill", based on that we need to preload 
-"picture_selection_images/fresh_dill.jpg". Rather than try to do that all at once, 
-I will have one for-loop to build the plain image names, then a second for loop to 
-add the path info.
+"picture_selection_images/fresh_dill.jpg". So before I add each choice to the 
+building preload list I have to add that path info.
 */
 
 //take a look at the selection_stim_list we are working from
@@ -226,21 +225,14 @@ console.log(selection_stim_list);
 var image_preload_list = [];
 for (this_stim_and_choices of selection_stim_list) {
   this_choices = this_stim_and_choices.choices;
-  image_preload_list = image_preload_list.concat(this_choices);
+  for (this_filename of this_choices) {
+    var this_filename_with_path = "picture_selection_images/" + this_filename + ".jpg";
+    image_preload_list.push(this_filename_with_path);
+  }
 }
 
 //take a look at the resulting array
 console.log(image_preload_list);
-
-//second for-loop - add path and file extension to each of those
-var image_preload_list_with_paths = [];
-for (this_filename of image_preload_list) {
-  var this_filename_with_path = "picture_selection_images/" + this_filename + ".jpg";
-  image_preload_list_with_paths.push(this_filename_with_path);
-}
-
-//take a look at the resulting array
-console.log(image_preload_list_with_paths);
 
 /*
 Finally, we can plug this list of images to preload into the preload trial
@@ -248,7 +240,7 @@ Finally, we can plug this list of images to preload into the preload trial
 var preload = {
   type: "preload",
   auto_preload: true,
-  images: image_preload_list_with_paths,
+  images: image_preload_list,
 };
 
 /******************************************************************************/
