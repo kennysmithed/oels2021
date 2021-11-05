@@ -21,7 +21,7 @@ For this demo experiment we are using audio stims produced by my RA Clem Ashton,
 
 As usual, I'd like you to download and run the code I provide, look at how the code works, and then attempt the exercises below, which involve editing the code in simple ways.
 
-You need a bunch of files for this experiment - as per last week, an html file, a js file, *three* php files (for saving CSV and audio data, and also reading in trial lists), and then various folders containing images, sounds, trial lists etc. Again, rather than downloading them individually, download the following zip file and then uncompress it into your usual jspsych folder:
+You need a bunch of files for this experiment - as per last week, an html file, a js file, *two* php files (for saving CSV and audio data, and also reading in trial lists), various folders containing images, sounds, trial lists etc, plus additional files for a second version of the experiment. Again, rather than downloading them individually, download the following zip file and then uncompress it into your usual jspsych folder:
 - <a href="code/confederate_priming.zip" download> Download confederate_priming.zip</a>
 
 I also stuck a copy of jsPsych in the zip file, so it contains everything you need. As usual, extract it into your practicals folder or run it on the jspsychlearning server - since data (including audio) won't save if you run it locally, by this point you really want to be at least testing everything on the server. Furthermore, there are a couple of things to tweak before you can run the code:
@@ -544,8 +544,8 @@ where `read_trial_list` gets the data from the CSV and then `build_timeline` tur
 How can we get around this problem? There are various solutions, but I think the simplest one is to use the `async` and `await` functions in newer versions of javascript. This allows us to declare some functions as `async` (i.e. asynchronous), and then use `await` to tell the browser to wait for a certain operation to complete before moving on. This means we can wait until the CSV file has been successfully read before we try to process the resulting data.  
 
 That's how the `read_trials_and_prepare_timeline` function works - the full code is below, but this consists of the following steps:
-- Read in the trial list from the CSV file using the `read_trial_list` function (which just calls a PHP script that does the reading for us, plus a tiny bit of conversion work) - we will `await` this result because we can't proceed without it.
-- Use that to build the interaction trials using the `build_timeline` function, which basically reads the relevant columns from the CSV and uses the `make_picture_selection_trial` and `make_picture_description_trial` functions we created earlier to make jsPsych trials.
+- Read in the trial list from the CSV file using the `read_trial_list` function - we will `await` this result because we can't proceed without it. To keep the code as simple as possible the `read_trial_list` function is defined in a separate javascript file, `read_from_csv.js` - if you look at `confederate_priming_readfromcsv.html` you'll see we are loading this additional javascript file along with our plugins. You don't have to look at `read_from_csv.js` unless you want to - it's fine if you treat the process of reading in the CSV file as a black box, and we'll actually use a slightly different technique next week.  
+- Use that trial list to build the interaction trials using the `build_timeline` function, which basically reads the relevant columns from the CSV and uses the `make_picture_selection_trial` and `make_picture_description_trial` functions we created earlier to make jsPsych trials.
 - Build our image button preload list, which is just the same process as before but wrapped up in a function called `build_button_image_preload`.
 - Stick that interaction timeline together with the instruction trials to produce our full timeline.
 - And then run the full timeline.
