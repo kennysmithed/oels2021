@@ -17,7 +17,7 @@ My preference would be for a separate references section at the end for anything
 
 Yes absolutely! As long as it's a proper paper and not just e.g. a 200 word abstract.
 
-### A couple of the papers I want to use do involve online experiments, but bot crowdsourcing - e.g. participants were recruited via email and social networking sites. Is it still OK to use those papers?
+### A couple of the papers I want to use do involve online experiments, but not crowdsourcing - e.g. participants were recruited via email and social networking sites. Is it still OK to use those papers?
 
 Yes absolutely! 
 
