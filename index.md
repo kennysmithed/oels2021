@@ -105,7 +105,7 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 
 - *Scientific content:* iterated learning and the evolution of compositional structure
 - *Technical content:* reading trial lists from CSVs again, PHP scripts for iteration
-- Reading
+- [Reading](oels_reading_wk9.md)
 - Programming task
 - Lecture slides
 
@@ -113,11 +113,13 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 
 - *Scientific content:* least effort and Zipf's Law of Abbreviation
 - *Technical content:* web sockets, python servers, incrementally building a timeline
-- Reading
+- [Reading](oels_reading_wk10.md)
 - Programming task
 - Lecture slides
 
 ### Week 11 (29th November): Interacting with MTurk
+
+No lecture or lab in week 11, but there are some materials that will be useful for you to read if you are thinking of setting up a real experiment in the wild!
 
 - *Scientific content:* None!
 - *Technical content:* How to set up a server, launch and pay participants, manage qualifications, etc
