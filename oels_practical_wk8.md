@@ -586,9 +586,9 @@ Attempt these problems.
 - The short trial list I built in `conferedate_priming.js` is for a confederate who uses both PO and DO descriptions. How would you change that trial list to model a DO-only confederate?
 - Now try running the `conferedate_priming_readfromcsv.html` experiment - you don't have to work through the whole experiment, just a few trials! Again, check you can see your data on the server.
 - For this version of the experiment, how do you switch from an alternating to DO-only confederate? (Hint: this involves changing the name of the file used by the `read_trials_and_prepare_timeline` function in the very last line of the code).
-- Building on the previous question: how would you randomly allocate a participant to one of these two conditions, alternating vs DO confederate? (Hint: you could look at the `random_image_flip` function for inspiration).
+- Building on the previous question: how would you randomly allocate a participant to one of these two conditions, alternating vs DO confederate? (Hint: you could look at the `random_image_flip` function for inspiration). Once you have attempted this, you can look at [my thoughts on how it could be done](oels_practical_wk8_extended.md) (which also covers the harder question later on). 
 - For either of these experiments, figure out how to disable image preloading for the button images and re-run the experiment. Can you see the difference? If it works smoothly, try running the experiment in Chrome in Incognito mode, which prevents your browser saving images etc for you. Can you see the difference now?
-- [Harder, optional] Can you change the `random_wait` function so it generates longer waits early in the experiment and shorter waits later on?
+- [Harder, optional] Can you change the `random_wait` function so it generates longer waits early in the experiment and shorter waits later on? Once you have attempted this, you can look at [my thoughts on how it could be done](oels_practical_wk8_extended.md).
 
 
 ## References
