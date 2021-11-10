@@ -54,7 +54,7 @@ recordings were made in, but we can also cheat a little bit and use it here, mak
 length of the random wait contingent on `recording_counter`:
 
 ```js
-unction random_wait() {
+function random_wait() {
   if (recording_counter<5) { //first 5 pairs of trials, very slow
     var wait = 5000 + Math.floor(Math.random() * 3000); //this will be a number between 5000 and 8000
   }
