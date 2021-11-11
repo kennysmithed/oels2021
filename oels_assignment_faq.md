@@ -25,7 +25,7 @@ Yes absolutely!
 
 ###  Once I have built my experiment, am I supposed to collect actual data from participants?
 
-**No**. This is extremely important - you must not collect actual data! We don't have ethical approach. The idea is that this assessment gives you the opportunity to showcase your ability to build a well-motivated online experiment that's designed to test a particular idea you set out in your report. But we are not running a full research project, so no data collection. It's important that you test your experiment yourself so you can be confident it works, but no real data please!
+**NO.** This is extremely important - you must not collect actual data! We don't have ethical approach. The idea is that this assessment gives you the opportunity to showcase your ability to build a well-motivated online experiment that's designed to test a particular idea you set out in your report. But we are not running a full research project, so no data collection. It's important that you test your experiment yourself so you can be confident it works, but no real data please!
 
 ###  I plan to work on something that would involve recording new audio stimuli from speakers of different languages. For this class I wonder whether I can put a sort of placeholder stimuli in instead of the actual stimuli that would be used, and perhaps describe what each placeholder is supposed to be in the report. Would this be OK?
 
