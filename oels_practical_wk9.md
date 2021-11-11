@@ -176,12 +176,113 @@ Second, we need to keep track of the labels the participant produces as they  wo
 var participant_final_label_set = [];
 ```
 
-Finally, we define a function, `make_production_trial`, which takes an `object_filename` (e.g. `images/o1_cG_n2.png`) and creates a production trial for that object. 
+Finally, we define a function, `make_production_trial`, which takes an `object_filename` (e.g. `images/o1_cG_n2.png`) and creates a production trial for that object. This is conceptually quite similar to the production trials in the word learning experiment earlier in the course - the participant sees an image and clicks on a label, so that provides a good starting point for thinking about how to build this kind of trial. The difference is that in the word learning experiment the participant only had to click once - here we need them to click several times, to build a label syllable by syllable. And we can't just pre-specify that they need to click e.g. 3 times to build a 3-syllable label - we want the participants to have the freedom to make the labels as short or long as they like. 
 
-TO BE RE-WRITTEN TO REFLECT LOOPING
-The production trial uses a new plugin I created, which is based on the standard `image-button-response` plugin but allows participants to click repeatedly to build a complex label. Participants' `choices` are the `available_syllables` we created above, plus buttons labelled DELETE (to delete the last-selected syllable) and DONE (to move to the next trial). The DONE button only works if the participant has built a label with at least one syllable, to prevent null responses that would cause problems in iteration (alternatively we could allow null responses, but then we'd have to be on the lookout for them when creating training data from an input language file).  
+The solution is to have a trial that *loops* until the participant indicates they are done building the label, at which point we exit the loop and move on to the next trial. jsPsych provides some tools for looping - any trial can have a `loop_function` parameter that tells it if a trial should loop - but since this is slightly complicated I will build up the production trial step by step.
 
-Here's the function:
+Here's where we could start, with a one-click production trial based closely on the production trial from our word learning experiment:
+
+```js
+function make_production_trial(object_filename) {
+  
+  //add the DELETE and DONE buttons to the syllables
+  var buttons = available_syllables.concat(["DELETE", "DONE"]);
+
+  //define what a single production trial looks like - this will loop
+  var single_production_trial = {
+    type: "image-button-response",
+    stimulus: object_filename,
+    stimulus_height: 150,
+    choices: buttons,
+    on_finish: function (data) {
+      //figure out what button they clicked using buttons and data.response
+      var button_pressed = buttons[data.response];
+      data.label = button_pressed;
+      data.block = "production"; //mark it as production data
+      participant_final_label_set.push({object:object_filename,label:data.label}); //add this object-label pair to participant_final_label_set
+      save_iterated_learning_data(data); //save the data (which will include the built label)
+    }
+  };
+  return single_production_trial;
+}
+```
+Hopefully that makes sense - it's just an `image-button-response` trial, the buttons the participant has available are `available_syllables` plus buttons labelled DELETE and DONE (which we will need later), and when the trial finishes we save the participant's data, both to their data file but also adding to `participant_final_label_set`, recording which label they produced for this object so we can record their final language for eventual iteration. 
+
+This will work for a single-click trial but doesn't allow the participant to select multiple labels. To do that we need to loop. [You can read the jsPsych documentation on looping](https://www.jspsych.org/6.3/overview/timeline/#looping-timelines). The relevant part is at the top: "Any timeline can be looped using the `loop_function` option. The loop function should be a function that evaluates to true if the timeline should repeat, and false if the timeline should end." They also provide a very handy example, which is where I started when coding this myself. So we want our `single_production_trial` to loop until the participant clicks DONE. Following the example in the jsPsych documentation, we can achieve this by making a wrapper trial with a timeline consisting of `single_production_trial`, which decides to loop or not based on whether the participant just clicked DONE (in which case we want to stop looping) or not (in which case we can continue looping). That wrapper trial looks something like this:
+
+```js
+var production_loop = {
+    timeline: [single_production_trial],
+    loop_function: function () {
+      //return true if we want to continue looping otherwise return false to stop looping
+    },
+  };
+```
+
+We can combine that together with our definition of `single_production_trial` to get close to what we want. The one thing we have to figure out is how to check whether the participant clicked DONE, and if so how to pass that information to the loop_function in the wrapper trial. There are several ways you could do this, but I decided to do it by creating a new variable, `continue_production_loop`, which is set to `true` at the start of the trial; then when the participant clicks a button, we check if that button was the DONE button; if it was we set `continue_production_loop` to `false`. Then our loop_function just uses `continue_production_loop` to decide whether to loop or not. The code for that looks like this:
+
+```js
+function make_production_trial(object_filename) {
+  var continue_production_loop = true; //use this to control the production loop
+  //add the DELETE and DONE buttons to the syllables
+  var buttons = available_syllables.concat(["DELETE", "DONE"]);
+
+  //define what a single production trial looks like - this will loop
+  var single_production_trial = {
+    type: "image-button-response",
+    stimulus: object_filename,
+    stimulus_height: 150,
+    choices: buttons,
+    //after the participant clicks, what happens depends on what they clicked
+    on_finish: function (data) {
+      //figure out what button they clicked using buttons and data.response
+      var button_pressed = buttons[data.response];
+      //if they clicked DONE
+      if (button_pressed == "DONE") {
+          var button_pressed = buttons[data.response];
+          data.label = button_pressed;
+          data.block = "production"; //mark it as production data
+          participant_final_label_set.push({object:object_filename,label:data.label}); //add this object-label pair to participant_final_label_set
+          save_iterated_learning_data(data); //save the data (which will include the built label)
+          continue_production_loop = false; //break out of the loop
+        }
+    }
+  };
+  //slot single_production_trial into a loop
+  var production_loop = {
+    timeline: [single_production_trial],
+    loop_function: function () {
+      return continue_production_loop; //keep looping until continue_production_loop=false
+    },
+  };
+  return production_loop;
+}
+```
+
+So that will loop until the participant clicks DONE, at which point the trial will stop. That's pretty close to what we want, but there are a few problems:
+
+1. We only record the *last* button the participant clicks (which will be DONE), rather than all the buttons they clicked until they clicked DONE. So we need to keep track of what they clicked as they built up their label, because that's what we are actually interested in.
+
+2. We really don't want the participant to be able to click DONE until they have produced *something* - blank responses are no use to us, we want them to click at least one syllable.
+
+3. We want the DELETE button to remove the last syllable they selected.
+
+4. We want the participant to be able to see the label as they build it - otherwise it'd be very hard for them to see if the label they were building was what they intended.
+
+We can solve all these problems by creating a new variable, `building_label`, which will be a list of all the syllables the participant has selected so far. Initially this will be empty:
+
+```js
+var building_label = []
+```
+
+But every time the participant clicks on a syllable, we will add that syllable to the building label using push - so if the participant clicks "ti" then "vu" the building label will be:
+```js
+["ti", "vu"]
+```
+To delete the last thing they clicked, we can use a built-in javascript function called `slice` to just chop the last item off the end of the list. And if we want to display the label as a single string rather than a list of syllables we can use another built-in function, `join`, which takes a list of strings and pastes them together - e.g. `["ti", "vu"].join("")` will produce the string "tivu".
+
+All we need to do now is show that building label on the screen. We can do that using the `prompt` parameter - every time we start our `single_production_trial` loop, we can work out what the current `building_label` is and display it in the prompt (displaying a dummy whitespace prompt if there is nothing in the building label). And finally, when the participant clicks DONE we save the pasted-together building label as their complete response. The code for all that is as follows:
+
 ```js
 function make_production_trial(object_filename) {
   var building_label = []; //store the syllables of the building label here
@@ -191,7 +292,7 @@ function make_production_trial(object_filename) {
 
   //define what a single production trial looks like - this will loop
   var single_production_trial = {
-    type: "image-button-response-promptabovebuttons",
+    type: "image-button-response",
     stimulus: object_filename,
     stimulus_height: 150,
     choices: buttons,
@@ -212,12 +313,12 @@ function make_production_trial(object_filename) {
       var button_pressed = buttons[data.response];
       //if they clicked DONE
       if (button_pressed == "DONE") {
-        //only act if they have produced *something*
+        //only end the loop if they have produced *something*
         if (building_label.length > 0) {
           var final_label = building_label.join("");
           data.label = final_label;
           data.block = "production"; //mark it as production data
-          participant_final_label_set.push({object:object_filename,label:final_label}); //add this object-label pair to participant_final_label_set
+          participant_final_label_set.push({object:object_filename,label:final_label}) //add this object-label pair to participant_final_label_set
           save_iterated_learning_data(data); //save the data (which will include the built label)
           continue_production_loop = false; //break out of the loop
         }
@@ -245,6 +346,8 @@ function make_production_trial(object_filename) {
 }
 ```
 
+That is a complicated trial! But hopefully you can see how it's built up from simpler stuff you have already seen, plus the new loop functionality. 
+
 Note that at the end of the final trial (in `on_finish`, when the participant has clicked DONE) we do three things. First, we stick together the sequence of choices from `building_label` to form their final well-formatted label:
 ```js
 var final_label = building_label.join("");
@@ -255,6 +358,8 @@ Second, we add a representation of the object-label pair the participant produce
 participant_final_label_set.push({object:object_filename,label:final_label}); 
 ```
 Third, we also save the trial data to the server as usual, using `save_iterated_learning_data`, to keep a more detailed record of the participant's response.
+
+The only annoying thing about this is that the `prompt` in the `image-button-response` plugin appears below the buttons, which looks terrible in this case, so we use a custom plugin, `image-button-response-promptabovebuttons`, which just repositions the prompt - we just load that custom plugin in the usual way, and use it instead of `image-button-response` here.
 
 We can then use this `make_production_trial` function (and the equivalent `make_observation_trial` function) to create a trial list of observation and production trials. That's what the next block of code does: `build_training_timeline` and `build_testing_timeline` both take an input language specified as a list of ``{object:object_filename,label:a_label}`` object-label pairs, and build a training or testing timeline.
 
