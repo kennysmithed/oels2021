@@ -540,7 +540,7 @@ An additional thing to note about this code: I have not implemented the deduplic
 Also note that there is no maximum generation number in this code - chains will
 run forever! If you want to stop at e.g. 10 generations, this could also be implemented in step 9a - check this participant's generation number, if they are at generation 10 then don't save their lexicon to the ready_to_iterate folder.
 
-The final line of the code simply runs this `run_experiment()` function, starting the whole 9-step process described above.
+The final line of the code simply runs this `run_experiment()` function, starting the whole 9-step process described above. You might notice that you get some warnings in the console about problems with preloading - as far as we can work out these are spurious and occur when the auto-preloader reads in the training timeline, which includes a nested timeline that throws it off slightly, but the preloading works and everything runs smoothly.
 
 ## Exercises with the iterated learning experiment code
 
