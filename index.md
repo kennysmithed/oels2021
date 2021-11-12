@@ -106,7 +106,7 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 - *Scientific content:* iterated learning and the evolution of compositional structure
 - *Technical content:* reading trial lists from CSVs again, PHP scripts for iteration
 - [Reading](oels_reading_wk9.md)
-- Programming task
+- [Programming task](oels_practical_wk9.md)
 - [Lecture slides](slides/oels2021_lecture8.pdf)
 
 ### Week 10 (22nd November): Participant-to-participant interaction
