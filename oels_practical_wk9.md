@@ -1,6 +1,6 @@
 ---
 title: Week 9 practical
-description: reading trial lists from CSVs again, PHP scripts for iteration
+description: looping trials, reading trial lists from CSVs again, PHP scripts for iteration
 ---
 
 ## The plan for week 9 practical

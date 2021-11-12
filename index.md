@@ -104,7 +104,7 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 ### Week 9 (15th November): Iterated Learning
 
 - *Scientific content:* iterated learning and the evolution of compositional structure
-- *Technical content:* reading trial lists from CSVs again, PHP scripts for iteration
+- *Technical content:* looping trials, reading trial lists from CSVs again, PHP scripts for iteration
 - [Reading](oels_reading_wk9.md)
 - [Programming task](oels_practical_wk9.md)
 - [Lecture slides](slides/oels2021_lecture8.pdf)
