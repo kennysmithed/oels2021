@@ -547,9 +547,9 @@ The final line of the code simply runs this `run_experiment()` function, startin
 - **After setting up the various folders in `server_data`**, run the experiment and use cyberduck to watch the CSV files appearing and moving around in `server_data/il` - remember you will need to click refresh in cyberduck regularly to see what's happening. Experiment with abandoning the experiment part-way through (i.e. closing the browser window) and see what happens. Look at the CSV data files that get created in various places, and check that the contents of the data files make sense and how they relate to what you see as a participant. Try to run a few generations of at least one chain and check that the iteration process works as you expect.
 - How would you increase the number of training trials in the observation phase of the experiment to provide e.g. 6 passes through the training set? How would you increase or decrease the size of the transmission bottleneck?
 - How would you randomise the order of the syllables on production trials separately for every production trial? Do you think that is better or worse? How about if you don't randomise them at all? Have a think about the possible consequences of these various randomisation choices.
-- [Harder, optional] How could you insert a small number of test trials after each block of training trials, to keep the participant focussed on the task?
-- [Harder, optional] Can you add a maximum generation number, so no chain goes beyond e.g. 10 generations?
-- [Very hard, very optional] Can you implement a deduplication filter like that used by Beckner et al., to avoid presenting participants with ambiguous duplicate labels (where two distinct visual stims map to the same label)?
+- [Harder, optional] How could you insert a small number of test trials after each block of training trials, to keep the participant focussed on the task? [You can check my model answer once you have tried this yourself.](oels_practical_wk9_extended.md)
+- [Harder, optional] Can you add a maximum generation number, so no chain goes beyond e.g. 10 generations? [You can check my model answer once you have tried this yourself.](oels_practical_wk9_extended.md)
+- [Very hard, very optional] Can you implement a deduplication filter like that used by Beckner et al., to avoid presenting participants with ambiguous duplicate labels (where two distinct visual stims map to the same label)? [You can check my model answer once you have tried this yourself.](oels_practical_wk9_extended.md)
 
 ## References
 
