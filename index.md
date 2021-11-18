@@ -125,6 +125,16 @@ No lecture or lab in week 11, but there are some materials that will be useful f
 - *Technical content:* How to set up a server, launch and pay participants, manage qualifications, etc
 - Combined reading/practical: how to get your experiment online
 
+### Additional drop-in labs for questions on Assessment 2 code
+
+These will be on Gather. Obviously we won't write your code for you, but if you are having trouble interpreting an error message or finding a bug or want some tips on how to achieve a particular effect we can help you figure it out. Drop-in labs will be held at the following times:
+- Wednesday 24th November, 2pm-4pm
+- Thursday 25th November, 2pm-4pm
+- Monday 29th November, 9am-11am
+- Monday 6th December, 9am-11am
+
+
+
 ## Re-use
 
 All aspects of this work are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
