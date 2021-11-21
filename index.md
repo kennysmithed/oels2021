@@ -114,7 +114,7 @@ In week 5 there is no lecture, but we have a lab as usual - use this time to cat
 - *Scientific content:* least effort and Zipf's Law of Abbreviation
 - *Technical content:* web sockets, python servers, incrementally building a timeline
 - [Reading](oels_reading_wk10.md)
-- Programming task
+- [Programming task](oels_practical_wk10.md)
 - [Lecture slides](slides/oels2021_lecture9.pdf)
 
 ### Week 11 (29th November): Interacting with MTurk
