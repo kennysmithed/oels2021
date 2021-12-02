@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Getting MTurk ID from URL</title>
+        <script src="jspsych-6.3.1/jspsych.js"></script>
+        <script src="jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+        <link href="jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
+    </head>
+    <body>
+      <script>
+
+      var turk_info = jsPsych.turk.turkInfo()
+      var info_screen = {
+        type: 'html-keyboard-response',
+        choices:jsPsych.NO_KEYS,
+        stimulus: "<h3>Your details</h3>\
+        <p>Your worker ID: " + turk_info.workerId + "</p>\
+        <p>Your HIT ID: " + turk_info.hitId + "</p>\
+        <p>Your assignment ID: " + turk_info.assignmentId + "</p>"
+      }
+
+      jsPsych.init({
+          timeline: [info_screen]
+        });
+
+
+      </script>
+    </body>
+
+</html>

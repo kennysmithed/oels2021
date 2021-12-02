@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Getting prolific ID from URL</title>
+        <script src="jspsych-6.3.1/jspsych.js"></script>
+        <script src="jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+        <link href="jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
+    </head>
+    <body>
+      <script>
+
+      var prolific_id = jsPsych.data.getURLVariable('PROLIFIC_PID');
+      var study_id = jsPsych.data.getURLVariable('STUDY_ID');
+      var session_id = jsPsych.data.getURLVariable('SESSION_ID');
+
+      var info_screen = {
+        type: 'html-keyboard-response',
+        choices:jsPsych.NO_KEYS,
+        stimulus: "<h3>Your details</h3>\
+        <p>Your PROLIFIC_PID: " + prolific_id + "</p>\
+        <p>Your STUDY_ID: " + study_id + "</p>\
+        <p>Your SESSION_ID: " + session_id + "</p>"
+      }
+
+      jsPsych.init({
+          timeline: [info_screen]
+        });
+
+
+      </script>
+    </body>
+
+</html>

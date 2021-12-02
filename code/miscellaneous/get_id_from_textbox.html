@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Getting ID from text box</title>
+        <script src="jspsych-6.3.1/jspsych.js"></script>
+        <script src="jspsych-6.3.1/plugins/jspsych-survey-text.js"></script>
+        <script src="jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+        <link href="jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    </head>
+    <body>
+      <script>
+
+      var unique_id = "none"
+
+      var id_survey = {type:'survey-text',
+                       questions: [{prompt: "Enter your ID:", name: 'id'}],
+                       on_finish: function(data) {
+                         unique_id = data.response.id
+                       }
+                      }
+
+      var info_screen = {
+        type: 'html-keyboard-response',
+        choices:jsPsych.NO_KEYS,
+        //NB the stimulus is wrapped in a function that returns a stimulus string because
+        //we don't know the ID until the first trial is completed - if we don't wrap
+        //this as a function it will display the "none" ID that's defined when the
+        //timeline is built
+        stimulus: function() {
+          return "<h3>Your details</h3>\
+                  <p>Your ID: " + unique_id + "</p>"}
+      }
+
+      jsPsych.init({
+          timeline: [id_survey,info_screen]
+        });
+
+
+      </script>
+    </body>
+
+</html>
