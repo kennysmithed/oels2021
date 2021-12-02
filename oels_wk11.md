@@ -133,8 +133,8 @@ How do we do the automatic redirect at the end? This should be part of the `on_f
 
 ```js
 jsPsych.init({timeline: ...,
-							on_finish: function() {
-								window.location = 'https://app.prolific.co/submissions/complete?cc=3586E29D'}});
+	on_finish: function() {
+		window.location = 'https://app.prolific.co/submissions/complete?cc=3586E29D'}});
 ```
 
 These options are also described in [the jsPsych documentation](https://www.jspsych.org/6.3/overview/prolific/#completing-the-experiment).
