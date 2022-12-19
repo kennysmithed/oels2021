@@ -1,5 +1,9 @@
 
-Be aware, this is the 2021-2022 version of this course, which uses jsPsych 6.3. [The 2022-2023 version of the course is now available and complete](https://kennysmithed.github.io/oels2022/), which uses jsPsych 7.3.
+# Be aware, this is the 2021-2022 version of this course
+
+This edition of the course uses jsPsych 6.3. [The 2022-2023 version of the course is now available and complete](https://kennysmithed.github.io/oels2022/), which uses jsPsych 7.3.
+
+# The original 2021-2022 webpage starts here
 
 This is the webpage for the Honours/MSc Guided Research course Online Experiments for Language Scientists, running in academic year 2021/2022. I will add links to materials (readings, code) to this page; you will need to use Learn for electronic submission of your assessed work, and to keep an eye on announcements.
 
