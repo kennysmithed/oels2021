@@ -1,7 +1,7 @@
 
 # Be aware, this is the 2021-2022 version of this course
 
-This edition of the course uses jsPsych 6.3. [The 2022-2023 version of the course is now available and complete](https://kennysmithed.github.io/oels2022/), which uses jsPsych 7.3.
+This edition of the course uses jsPsych 6.3. [The 2022-2023 version of the course is now available and complete](https://kennysmithed.github.io/oels2022/), which uses jsPsych 7.3. I recommend you use that! I am keeping this version up for completeness.
 
 # The original 2021-2022 webpage starts here
 
