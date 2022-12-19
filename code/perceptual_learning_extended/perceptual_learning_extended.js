@@ -336,7 +336,6 @@ function save_questionnaire_data(data) {
 /*** Run the timeline *******************************************************/
 /******************************************************************************/
 
-
 jsPsych.init({
   timeline: full_timeline,
   on_finish: function () {
